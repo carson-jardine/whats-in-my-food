@@ -8,6 +8,8 @@ class FoodsController < ApplicationController
 
     response = conn.get("fdc/v1/foods/search?&query=#{ingredient}&pageSize=10")
     @json = JSON.parse(response.body, symbolize_names: true)
-    @foods = @json[:foods]
+    @foods = @json[:foods].map do |food_data|
+      Food.new(food_data)
+    end
   end
 end

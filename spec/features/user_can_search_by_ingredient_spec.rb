@@ -9,7 +9,7 @@ describe 'As a User' do
       fill_in :q, with: 'sweet potatoes'
       click_button('Search')
       expect(current_path).to eq('/foods')
-      expect(page).to have_content('10 Results')
+      expect(page).to have_content('39244 Results')
     end
 
     it "I see a list of ten foods that contain sweet potatoes and their details" do
@@ -20,9 +20,16 @@ describe 'As a User' do
       expect(page).to have_css(".food", count: 10)
       within(first(".food")) do
         expect(page).to have_css(".code")
+        expect(page).to have_content("070560951975")
+
         expect(page).to have_css(".description")
+        expect(page).to have_content("Sweet potatoes")
+
         expect(page).to have_css(".brand_owner")
+        expect(page).to have_content("The Pictsweet Company")
+
         expect(page).to have_css(".ingredients")
+        expect(page).to have_content("Sweet potatoes.")
       end
     end
   end
